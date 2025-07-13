@@ -5,7 +5,7 @@ export default function LoginPage() {
     <div className="min-h-screen grid md:grid-cols-2">
       {/* Chap tomon - login forma */}
       <div className="flex items-center justify-center bg-[#1A103D] p-8">
-        <div className="w-full max-w-md shadow-xl p-8 bg-base-100 rounded-2xl">
+        <div className="w-full max-w-md p-8 rounded-2xl">
           <h2 className="text-2xl font-bold mb-6 text-center">Welcome back 👋</h2>
           <LoginForm />
         </div>
