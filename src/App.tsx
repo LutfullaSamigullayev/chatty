@@ -1,17 +1,24 @@
-import { Routes, Route, Navigate } from "react-router-dom";
-import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
-import ChatPage from "./pages/ChatPage";
-// import ChatPage from "@/pages/ChatPage"; // keyinchalik qo‘shamiz
+import { Routes, Route } from "react-router-dom";
+import LoginPage from "@/pages/auth/LoginPage";
+import RegisterPage from "@/pages/auth/RegisterPage";
+import ChatPage from "@/pages/chat/ChatPage";
+import SettingsPage from "@/pages/SettingsPage";
+import Layout from "@/layout/Layout";
+import ProfilePage from "./pages/ProfilePage";
 
 export default function App() {
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="/login" />} />
+      {/* Public */}
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
-      <Route path="/chat" element={<ChatPage />} />
-      <Route path="*" element={<h1>404 - Page Not Found</h1>} />
+
+      {/* Boshqa sahifalar layout bilan */}
+      <Route element={<Layout />}>
+        <Route path="/" element={<ChatPage />} />
+        <Route path="/settings" element={<SettingsPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
+      </Route>
     </Routes>
   );
 }

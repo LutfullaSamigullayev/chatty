@@ -1,14 +1,28 @@
 import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function RegisterForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log({ name, email, password });
-    // backend register logic
+
+    try {
+      const res = await axios.post("http://localhost:7070/api/auth/sign-up", {
+        name,
+        email,
+        password,
+      });
+
+      localStorage.setItem("token", res.data.token); // tokenni saqlaymiz
+      navigate("/chat"); // ro‘yxatdan o‘tganidan so‘ng chat sahifasiga o‘tamiz
+    } catch (error: any) {
+      alert(error.response?.data?.message || "Ro‘yxatdan o‘tishda xatolik");
+    }
   };
 
   return (
@@ -50,7 +64,6 @@ export default function RegisterForm() {
         Create Account
       </button>
 
-      {/* Qo‘shimcha matn */}
       <p className="text-sm text-center mt-2">
         Already have an account?{" "}
         <a href="/login" className="text-primary hover:underline">

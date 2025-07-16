@@ -1,13 +1,26 @@
 import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log({ email, password });
-    // backend login logic
+
+    try {
+      const res = await axios.post("http://localhost:7070/api/auth/sign-in", {
+        email,
+        password,
+      });
+
+      localStorage.setItem("token", res.data.token); // tokenni saqlaymiz
+      navigate("/chat"); // login muvaffaqiyatli bo‘lsa, chat sahifasiga yo‘naltiramiz
+    } catch (error: any) {
+      alert(error.response?.data?.message || "Login xatoligi");
+    }
   };
 
   return (
@@ -38,7 +51,6 @@ export default function LoginForm() {
         Log In
       </button>
 
-      {/* Qo‘shimcha matn */}
       <p className="text-sm text-center mt-2">
         Don't have an account?{" "}
         <a href="/register" className="text-primary hover:underline">
