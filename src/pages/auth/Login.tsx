@@ -1,4 +1,5 @@
 import { Icons } from "../../icons";
+import './login.css';
 
 export function Login() {
   return (
