@@ -1,0 +1,33 @@
+.login-wrapper {
+    /* Umumiy konteyner uchun stil yozing */
+    
+  }
+  
+  .login-box {
+    /* O'rtada turgan login kartasi uchun */
+  }
+  
+  .login-title {
+    /* Welcome back... yozuvi uchun */
+  }
+  
+  .login-btn.google {
+    /* Google bilan kirish tugmasi uchun */
+  }
+  
+  .login-form {
+    /* Forma umumiy qismi uchun */
+  }
+  
+  .login-form-label {
+    /* Label'lar uchun */
+  }
+  
+  .login-btn-eye {
+    /* Ko'z tugmasi (parolni ko‘rsatish) uchun */
+  }
+  
+  .login-btn-submit {
+    /* "LOG IN" tugmasi uchun */
+  }
+  

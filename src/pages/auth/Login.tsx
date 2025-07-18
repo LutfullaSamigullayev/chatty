@@ -5,12 +5,12 @@ export function Login() {
     <div className="login-wrapper">
       <div className="login-box">
         <h1 className="login-title">Welcome back to the CodeSquid Community</h1>
-        <button className="login-goole">
+        <button className="login-btn google">
           <Icons.google />
           Log In with Google
         </button>
-        <form>
-          <label htmlFor="username">Email or Username</label>
+        <form className="login-form">
+          <label className="login-form-label" htmlFor="username">Email or Username</label>
           <input
             type="text"
             id="username"
@@ -23,11 +23,11 @@ export function Login() {
           <label htmlFor="password">Password</label>
           <div>
             <input type="password" id="password" name="password" />
-            <button type="button" aria-label="Toggle password visibility">
+            <button className="login-btn-eye" type="button" aria-label="Toggle password visibility">
               <Icons.eyeOpen />
             </button>
           </div>
-          <button type="submit">LOG IN</button>
+          <button className="login-btn-submit" type="submit">LOG IN</button>
           <p>Own an Account? <a href="#">JUMP RIGHT IN</a></p>
         </form>
       </div>
