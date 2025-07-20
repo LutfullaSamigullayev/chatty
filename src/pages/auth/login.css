@@ -1,39 +1,91 @@
 .login-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; 
-  }
-  
-  .login-box {
-    width: 380px;
-    border: 1px solid black;
-  }
-  
-  .login-title {
-    color: var(--color-dark-900);
-    font-weight: bold;
-    font-family: var(--font-main);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; 
+}
 
-  }
-  
-  .login-btn.google {
-    /* Google bilan kirish tugmasi uchun */
-  }
-  
-  .login-form {
-    /* Forma umumiy qismi uchun */
-  }
-  
-  .login-form-label {
-    /* Label'lar uchun */
-  }
-  
-  .login-btn-eye {
-    /* Ko'z tugmasi (parolni ko‘rsatish) uchun */
-  }
-  
-  .login-btn-submit {
-    /* "LOG IN" tugmasi uchun */
-  }
-  
+.login-box {
+  width: 380px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+}
+
+.login-title {
+  color: var(--color-dark-900);
+  font-weight: bold;
+  font-size: 32px;
+  text-align: center;
+}
+
+.login-btn.google {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 16px;
+  padding: 12px 22px;
+  border-radius: 20px;
+  border: 1px solid;
+  border-color: var(--color-gray-100);
+  background-color: var(--color-gray-150);
+  font-size: 12px;
+  line-height: 22px;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  margin: 20px 0;
+  /* Forma umumiy qismi uchun */
+}
+
+.login-form-label {
+  font-size: 12px;
+  line-height: 22px;
+  font-weight: 400;
+  color: var(--color-gray-500);
+  user-select: none;
+}
+.login-form-input {
+  font-size: 16px;
+  line-height: 28px;
+  font-weight: 400;
+  color: var(--color-dark-950);
+}
+.line-bottom {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--color-gray-200);
+}
+.login-password {
+  display: flex;
+  justify-content: space-between;
+}
+.login-btn-eye {
+  background-color: transparent;
+}
+
+.login-btn-submit {
+  background-color: var(--color-primary);
+  font-size: 12px;
+  line-height: 22px;
+  font-weight: 700;
+  color: var(--color-white);
+  padding: 12px 22px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.link-register {
+  text-align: center;
+  font-size: 12px;
+  color: var(--color-dark-700);
+}
+.link-register a{
+  color: var(--color-dark-950);
+}

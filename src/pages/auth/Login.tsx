@@ -11,26 +11,30 @@ export function Login() {
           Log In with Google
         </button>
         <form className="login-form">
+    <div className="line-bottom">
           <label className="login-form-label" htmlFor="username">Email or Username</label>
-          <input
+          <input className="login-form-input"
             type="text"
             id="username"
             name="username"
             placeholder="Email or Username"
           />
 
+    </div>
           {/* <label htmlFor="email">Email</label>
                 <input type="email" name="email" id="email" placeholder="Pochta manzilingizni kiriting" /> */}
-          <label htmlFor="password">Password</label>
-          <div>
-            <input type="password" id="password" name="password" />
+          <div className="line-bottom">
+          <label className="login-form-label" htmlFor="password">Password</label>
+          <div className="login-password">
+            <input className="login-form-input" type="password" id="password" name="password" />
             <button className="login-btn-eye" type="button" aria-label="Toggle password visibility">
               <Icons.eyeOpen />
             </button>
           </div>
+          </div>
           <button className="login-btn-submit" type="submit">LOG IN</button>
-          <p>Own an Account? <a href="#">JUMP RIGHT IN</a></p>
         </form>
+          <p className="link-register">Own an Account? <a href="#"><b>JUMP RIGHT IN</b></a></p>
       </div>
     </div>
   );

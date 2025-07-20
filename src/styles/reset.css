@@ -21,3 +21,6 @@ a {
 ul, ol {
     list-style: none;
 }
+input {
+    all: unset;
+}
