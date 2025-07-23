@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; 
+  height: 100vh;
 }
 
 .login-box {
@@ -86,6 +86,6 @@
   font-size: 12px;
   color: var(--color-dark-700);
 }
-.link-register a{
+.link-register a {
   color: var(--color-dark-950);
 }

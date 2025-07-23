@@ -1,18 +1,17 @@
-import { authPage } from "../../../types";
-import './authStyles.css'
+import "./authStyles.css";
 
-export function EmailInput({page}: authPage) {
+export function UserNameInput() {
   return (
     <div className="line-bottom">
       <label className="login-form-label" htmlFor="username">
-        {page == 'login' ? 'Email or Username': 'Username'}
+        Username
       </label>
       <input
         className="login-form-input"
-        type="text"
+        type='text'
         id="username"
         name="username"
-        placeholder="Email or Username"
+        placeholder="Username"
       />
     </div>
   );

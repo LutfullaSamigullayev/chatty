@@ -1,40 +1,24 @@
-import { Icons } from "../../icons";
-import './login.css';
+import { EmailInput, GoogleBtn, PasswordInput, SubmitBtn, UserNameInput } from "./components";
+import "./components/authStyles.css";
 
-export function Login() {
+export function Register() {
   return (
     <div className="login-wrapper">
       <div className="login-box">
-        <h1 className="login-title">Welcome back to the CodeSquid Community</h1>
-        <button className="login-btn google">
-          <Icons.google />
-          Log In with Google
-        </button>
+        <h1 className="login-title">Join & Connect the Fastest Growing Online Community</h1>
+        <GoogleBtn />
         <form className="login-form">
-    <div className="line-bottom">
-          <label className="login-form-label" htmlFor="username">Email or Username</label>
-          <input className="login-form-input"
-            type="text"
-            id="username"
-            name="username"
-            placeholder="Email or Username"
-          />
-
-    </div>
-          {/* <label htmlFor="email">Email</label>
-                <input type="email" name="email" id="email" placeholder="Pochta manzilingizni kiriting" /> */}
-          <div className="line-bottom">
-          <label className="login-form-label" htmlFor="password">Password</label>
-          <div className="login-password">
-            <input className="login-form-input" type="password" id="password" name="password" />
-            <button className="login-btn-eye" type="button" aria-label="Toggle password visibility">
-              <Icons.eyeOpen />
-            </button>
-          </div>
-          </div>
-          <button className="login-btn-submit" type="submit">LOG IN</button>
+          <UserNameInput />
+          <EmailInput />
+          <PasswordInput />
+          <SubmitBtn title="register" />
         </form>
-          <p className="link-register">Own an Account? <a href="#"><b>JUMP RIGHT IN</b></a></p>
+        <p className="link-login">
+          Own an Account?{" "}
+          <a href="#">
+            <b>JUMP RIGHT IN</b>
+          </a>
+        </p>
       </div>
     </div>
   );
