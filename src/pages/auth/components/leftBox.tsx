@@ -5,7 +5,7 @@ export function LeftBox() {
     <div className="auth-left-wrapper">
       <div className="auth-logo">
         <Icons.logo />
-        <h1 className="auth-logo-title">CodeSquid</h1>
+        <h1 className="auth-logo-title">Chatty</h1>
       </div>
       <img className="auth-left-img" src="/center.png" alt="chatImage" />
       <div className="auth-left-content">
