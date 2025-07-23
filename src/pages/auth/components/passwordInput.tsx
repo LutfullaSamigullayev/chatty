@@ -4,19 +4,19 @@ import "./authStyles.css";
 export function PasswordInput() {
   return (
     <div className="line-bottom">
-      <label className="login-form-label" htmlFor="password">
+      <label className="auth-form-label" htmlFor="password">
         Password
       </label>
-      <div className="login-password">
+      <div className="form-password">
         <input
-          className="login-form-input"
+          className="auth-form-input"
           type="password"
           id="password"
           name="password"
           placeholder="Password"
         />
         <button
-          className="login-btn-eye"
+          className="password-btn-eye"
           type="button"
           aria-label="Toggle password visibility"
         >
