@@ -1,12 +1,12 @@
 .home-wrapper {
     width: 100%;
     height: 100%;
-
 }
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 80px;
     padding: 8px 18px;
     background: #9a96ff;
     background: radial-gradient(circle,rgba(154, 150, 255, 1) 0%, rgba(84, 84, 255, 1) 100%);
@@ -29,4 +29,13 @@
     padding: 8px 16px;
     cursor: pointer;
     user-select: none;
+}
+.main-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: calc(100% - 80px);
+    background-image: url('/messages_light_colour_background.jpg');
+    background-size: cover;
+    
 }

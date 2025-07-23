@@ -4,8 +4,9 @@
     box-sizing: border-box;
     scroll-behavior: smooth;
 }
-html, body {
+html, body, #root {
     height: 100%;
+    overflow: hidden;
 }
 body {
     font-family: var(--font-main);
