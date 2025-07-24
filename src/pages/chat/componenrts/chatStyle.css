@@ -5,3 +5,6 @@
     background-color: var(--color-white);
     border-radius: 16px;
 } 
+.contacts-box {
+    width: 360px;
+}

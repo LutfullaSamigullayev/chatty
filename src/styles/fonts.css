@@ -1,34 +1,76 @@
+/*------------- ZenKaku ------------*/
 @font-face {
-  font-family: 'ZenKaku';
-  src: url('/fonts/Zen_Kaku_Gothic_Antique/ZenKakuGothicAntique-Light.woff2') format('woff2');
-  font-weight: 300;           /* Light */
+  font-family: "ZenKaku";
+  src: url("/fonts/Zen_Kaku_Gothic_Antique/ZenKakuGothicAntique-Light.woff2")
+    format("woff2");
+  font-weight: 300; /* Light */
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'ZenKaku';
-  src: url('/fonts/Zen_Kaku_Gothic_Antique/ZenKakuGothicAntique-Regular.woff2') format('woff2');
-  font-weight: 400;           /* Regular, Normal */
+  font-family: "ZenKaku";
+  src: url("/fonts/Zen_Kaku_Gothic_Antique/ZenKakuGothicAntique-Regular.woff2")
+    format("woff2");
+  font-weight: 400; /* Regular, Normal */
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'ZenKaku';
-  src: url('/fonts/Zen_Kaku_Gothic_Antique/ZenKakuGothicAntique-Medium.woff2') format('woff2');
-  font-weight: 500;           /* Medium */
+  font-family: "ZenKaku";
+  src: url("/fonts/Zen_Kaku_Gothic_Antique/ZenKakuGothicAntique-Medium.woff2")
+    format("woff2");
+  font-weight: 500; /* Medium */
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'ZenKaku';
-  src: url('/fonts/Zen_Kaku_Gothic_Antique/ZenKakuGothicAntique-Bold.woff2') format('woff2');
-  font-weight: 700;           /* Bold */
+  font-family: "ZenKaku";
+  src: url("/fonts/Zen_Kaku_Gothic_Antique/ZenKakuGothicAntique-Bold.woff2")
+    format("woff2");
+  font-weight: 700; /* Bold */
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'ZenKaku';
-  src: url('/fonts/Zen_Kaku_Gothic_Antique/ZenKakuGothicAntique-Black.woff2') format('woff2');
-  font-weight: 900;           /* Black */
+  font-family: "ZenKaku";
+  src: url("/fonts/Zen_Kaku_Gothic_Antique/ZenKakuGothicAntique-Black.woff2")
+    format("woff2");
+  font-weight: 900; /* Black */
+  font-style: normal;
+}
+
+/*------------- Roboto ------------*/
+@font-face {
+  font-family: "Roboto";
+  src: url("/fonts/Roboto/Roboto-Light.woff2") format("woff2");
+  font-weight: 300; /* Light */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("/fonts/Roboto/Roboto-Regular.woff2") format("woff2");
+  font-weight: 400; /* Regular, Normal */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("/fonts/Roboto/Roboto-Medium.woff2") format("woff2");
+  font-weight: 500; /* Medium */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("/fonts/Roboto/Roboto-Bold.woff2") format("woff2");
+  font-weight: 700; /* Bold */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("/fonts/Roboto/Roboto-Black.woff2") format("woff2");
+  font-weight: 900; /* Black */
   font-style: normal;
 }

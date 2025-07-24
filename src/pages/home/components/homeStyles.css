@@ -8,6 +8,7 @@
     align-items: center;
     height: 80px;
     padding: 8px 18px;
+    font-family: var(--font-ZenKaku);
     background: #9a96ff;
     background: radial-gradient(circle,rgba(154, 150, 255, 1) 0%, rgba(84, 84, 255, 1) 100%);
 }

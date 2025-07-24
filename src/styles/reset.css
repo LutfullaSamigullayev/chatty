@@ -1,27 +1,30 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
 }
-html, body, #root {
-    height: 100%;
-    overflow: hidden;
+html,
+body,
+#root {
+  height: 100%;
+  overflow: hidden;
 }
 body {
-    font-family: var(--font-main);
+  font-family: var(--font-Roboto);
 }
 button {
-    border: none;
+  border: none;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
-ul, ol {
-    list-style: none;
+ul,
+ol {
+  list-style: none;
 }
 input {
-    all: unset;
+  all: unset;
 }

@@ -12,7 +12,7 @@ export interface userImg {
   size: userImgSize;
   isActive?: boolean;
 }
-export interface userContact {
+export interface userContactType {
   userImgUrl: string;
   userName: string;
   massage: string;

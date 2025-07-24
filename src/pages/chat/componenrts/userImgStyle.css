@@ -1,30 +1,32 @@
 .user-img-wrapper {
-    position: relative;
-    display: inline-block;
+  position: relative;
+  display: inline-block;
+  width: fit-content;
+  height: fit-content;
 }
 .user-img {
-    border-radius: 50%;
-    object-fit: cover;
+  border-radius: 50%;
+  object-fit: cover;
 }
 .user-img-49 {
-    width: 49px;
-    height: 49px;
+  width: 49px;
+  height: 49px;
 }
 .user-img-40 {
-    width: 40px;
-    height: 40px;
+  width: 40px;
+  height: 40px;
 }
 .user-img-36 {
-    width: 36px;
-    height: 36px;
+  width: 36px;
+  height: 36px;
 }
 .user-img-active-dot {
-    position: absolute;
-    bottom: 2px;
-    right: 2px;
-    width: 12px;
-    height: 12px;
-    background-color: var(--color-green-400);
-    border: 1px solid white;
-    border-radius: 50%;
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 12px;
+  height: 12px;
+  background-color: var(--color-green-500);
+  border: 1px solid white;
+  border-radius: 50%;
 }

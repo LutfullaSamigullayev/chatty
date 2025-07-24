@@ -1,23 +1,34 @@
 :root {
-    /* Colors */
-    --color-dark-950: #212121;
-    --color-dark-900: #242424;
-    --color-dark-700: #424242;
-  
+  /* Colors */
+  --color-dark-950: #212121;
+  --color-dark-900: #242424;
+  --color-dark-700: #424242;
 
-    --color-gray-600: #616161;
-    --color-gray-500: #757575;
-    --color-gray-200: #BDBDBD;
-    --color-gray-100: #eeeeee;
-    --color-gray-150: #FAFAFA;
-    --color-gray-50:  #f5f5f5;
+  --color-gray-950: #080707;
+  --color-gray-600: #616161;
+  --color-gray-500: #757575;
+  --color-gray-550: #747881;
+  --color-gray-400: #b4b7bb;
+  --color-gray-450: #bdbdbd;
+  --color-gray-300: #dbdde1;
+  --color-gray-100: #eeeeee;
+  --color-gray-150: #fafafa;
+  --color-gray-50: #f5f5f5;
 
-    --color-green-400: #4caf50;
+  --color-red-600: #ff3742;
 
-    --color-white:    #ffffff;
-    --color-primary:  #7b76f1;
+  --color-green-500: #20e070;
 
-      /* Fonts */
-      --font-main: 'ZenKaku', sans-serif;
-  }
-  
+  --color-blue-50: #ccdfff;
+  --color-blue-100: #e0f0ff;
+  --color-blue-300: #669fff;
+  --color-blue-500: #005fff;
+  --color-blue-600: #005fff;
+
+  --color-white: #ffffff;
+  --color-primary: #7b76f1;
+
+  /* Fonts */
+  --font-ZenKaku: "ZenKaku", sans-serif;
+  --font-Roboto: "Roboto", sans-serif;
+}

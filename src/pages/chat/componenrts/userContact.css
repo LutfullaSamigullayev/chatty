@@ -1,0 +1,45 @@
+.contact-box {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 72px;
+  padding: 12px 8px;
+  column-gap: 8px;
+  cursor: pointer;
+}
+.contact-context {
+  width: 100%;
+  padding: 2px 0;
+}
+.contact-name {
+  font-size: 16px;
+  color: var(--color-gray-950);
+  font-weight: 500;
+}
+.contact-massege-box {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: var(--color-gray-550);
+}
+.contact-massage {
+  width: 220px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.contact-massage-count {
+  position: absolute;
+  width: fit-content;
+  height: fit-content;
+  background-color: var(--color-red-600);
+  color: var(--color-white);
+  border-radius: 18px;
+  padding: 8px;
+  font-size: 12px;
+  line-height: 8px;
+  font-weight: 700;
+  right: 8px;
+  top: 6px;
+}
