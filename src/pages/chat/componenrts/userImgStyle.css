@@ -30,3 +30,7 @@
   border: 1px solid white;
   border-radius: 50%;
 }
+.user-img-active-dot-top {
+  top: 0;
+  right: 0;
+}

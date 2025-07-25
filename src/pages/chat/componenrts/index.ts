@@ -1,3 +1,4 @@
 export { UserImg } from './userImg'
-export { UserContact } from './userContact'
 export { InputSearch } from './inputSearch'
+export { UserContact } from './userContact'
+export { UserMassage } from './userMassage'

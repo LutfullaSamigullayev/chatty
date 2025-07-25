@@ -215,4 +215,36 @@ export const Icons = {
       />
     </svg>
   ),
+  read: (props: IconProps) => (
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M6 10.8001L3.2 8.00006L2.26666 8.9334L6 12.6667L14 4.66673L13.0667 3.7334L6 10.8001Z"
+        fill="#747881"
+      />
+    </svg>
+  ),
+  read2: (props: IconProps) => (
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M11.9767 4.46979L11.0367 3.52979L6.81 7.75645L7.75 8.69645L11.9767 4.46979ZM14.8033 3.52979L7.75 10.5831L4.96333 7.80312L4.02333 8.74312L7.75 12.4698L15.75 4.46979L14.8033 3.52979ZM0.25 8.74312L3.97667 12.4698L4.91667 11.5298L1.19667 7.80312L0.25 8.74312Z"
+        fill="#005FFF"
+      />
+    </svg>
+  ),
 };
