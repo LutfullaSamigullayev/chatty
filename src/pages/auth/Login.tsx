@@ -8,8 +8,12 @@ import {
 } from "./components";
 import "./components/authStyles.css";
 import { validateEmail, validatePassword } from "./components/validation";
+import { useNavigate } from "react-router-dom";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 export function Login() {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
 
@@ -26,8 +30,9 @@ export function Login() {
     setPasswordError(passwordErr);
 
     if (!emailErr && !passwordErr) {
-      console.log("Login with:", { email, password });
-      // Bu yerda API chaqiruv yoki auth logic yozilishi mumkin
+      signInWithEmailAndPassword(getAuth(), email, password)
+        .then(() => navigate("/home"))
+        .catch((e) => console.log(e.error));
     }
   };
 
@@ -62,7 +67,7 @@ export function Login() {
 
           <p className="form-link">
             Own an Account?{" "}
-            <a href="#">
+            <a href="/register">
               <b>JUMP RIGHT IN</b>
             </a>
           </p>
