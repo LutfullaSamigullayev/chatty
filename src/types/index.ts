@@ -5,6 +5,13 @@ export type IconProps = SVGProps<SVGSVGElement>;
 export interface authSubmit {
   title: string;
 }
+export interface inputPropsType {
+  value: string;
+  error?: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur: () => void;
+}
+
 type userImgSize = 49 | 40 | 36;
 export interface userImg {
   src: string;

@@ -1,29 +1,7 @@
-import { useState } from "react";
 import "./authStyles.css";
+import { inputPropsType } from "../../../types";
 
-export function EmailInput() {
-  const [email, setEmail] = useState("");
-  const [error, setError] = useState("");
-
-  const validateEmail = (value: string) => {
-    const pattern = /^[\w.-]+@(gmail\.com|mail\.ru)$/;
-    if (!pattern.test(value)) {
-      return "Please enter a valid email ending with @gmail.com or @mail.ru.";
-    }
-    return "";
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-    if (error) {
-      setError(validateEmail(e.target.value));
-    }
-  };
-
-  const handleBlur = () => {
-    setError(validateEmail(email));
-  };
-
+export function EmailInput({ value, onChange, onBlur, error }: inputPropsType) {
   return (
     <div className={`line-bottom ${error ? "input-error" : ""}`}>
       <label className="auth-form-label" htmlFor="email">
@@ -35,9 +13,9 @@ export function EmailInput() {
         id="email"
         name="email"
         placeholder="Email"
-        value={email}
-        onChange={handleChange}
-        onBlur={handleBlur}
+        value={value}
+        onChange={onChange}
+        onBlur={onBlur}
       />
       {error && <p className="error-text">{error}</p>}
     </div>

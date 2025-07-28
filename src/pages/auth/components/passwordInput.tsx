@@ -1,29 +1,15 @@
 import { useState } from "react";
 import { Icons } from "../../../icons";
 import "./authStyles.css";
+import { inputPropsType } from "../../../types";
 
-export function PasswordInput() {
-  const [password, setPassword] = useState("");
+export function PasswordInput({
+  value,
+  onChange,
+  onBlur,
+  error,
+}: inputPropsType) {
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState("");
-
-  const validatePassword = (value: string) => {
-    if (value.length < 8) {
-      return "Password must be at least 8 characters long.";
-    }
-    return "";
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-    if (error) {
-      setError(validatePassword(e.target.value));
-    }
-  };
-
-  const handleBlur = () => {
-    setError(validatePassword(password));
-  };
 
   const toggleShowPassword = () => {
     setShowPassword((prev) => !prev);
@@ -41,9 +27,9 @@ export function PasswordInput() {
           id="password"
           name="password"
           placeholder="Password"
-          value={password}
-          onChange={handleChange}
-          onBlur={handleBlur}
+          value={value}
+          onChange={onChange}
+          onBlur={onBlur}
         />
         <button
           className="password-btn-eye"
