@@ -20,6 +20,8 @@ export function Login() {
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
+  const [submitError, setSubmitError] = useState(false);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -32,7 +34,7 @@ export function Login() {
     if (!emailErr && !passwordErr) {
       signInWithEmailAndPassword(getAuth(), email, password)
         .then(() => navigate("/home"))
-        .catch((e) => console.log(e.error));
+        .catch(() => setSubmitError(true));
     }
   };
 
@@ -63,12 +65,17 @@ export function Login() {
             />
 
             <SubmitBtn title="login" />
+            {submitError ? (
+              <p className="submit-error-text">Incorrect email or password.</p>
+            ) : (
+              <p></p>
+            )}
           </form>
 
           <p className="form-link">
-            Own an Account?{" "}
+            No Account yet?{" "}
             <a href="/register">
-              <b>JUMP RIGHT IN</b>
+              <b>UP</b>
             </a>
           </p>
         </div>

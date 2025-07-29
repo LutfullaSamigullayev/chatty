@@ -17,7 +17,7 @@ export function EmailInput({ value, onChange, onBlur, error }: inputPropsType) {
         onChange={onChange}
         onBlur={onBlur}
       />
-      {error && <p className="error-text">{error}</p>}
+      {error && <p className="input-error-text">{error}</p>}
     </div>
   );
 }

@@ -114,7 +114,7 @@
   color: var(--color-dark-950);
   border-radius: 10px 10px 0 0;
 }
-.error-text {
+.input-error-text {
   position: absolute;
   color: var(--color-red-600);
   font-size: 12px;
@@ -145,6 +145,12 @@
   padding: 12px 22px;
   border-radius: 20px;
   cursor: pointer;
+}
+.submit-error-text {
+  color: var(--color-red-600);
+  font-size: 12px;
+  text-align: center;
+  line-height: 0;
 }
 .form-link {
   text-align: center;

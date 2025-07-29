@@ -21,6 +21,8 @@ export function Register() {
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
+  const [submitError, setSubmitError] = useState(false);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -33,7 +35,7 @@ export function Register() {
     if (!emailErr && !passwordErr) {
       createUserWithEmailAndPassword(getAuth(), email, password)
         .then(() => navigate("/home"))
-        .catch((e) => console.log(e.error));
+        .catch(() => setSubmitError(true));
     }
   };
 
@@ -61,6 +63,11 @@ export function Register() {
               onBlur={() => setPasswordError(validatePassword(password))}
             />
             <SubmitBtn title="register" />
+            {submitError ? (
+              <p className="submit-error-text">Incorrect email or password.</p>
+            ) : (
+              <p></p>
+            )}
           </form>
           <p className="form-link">
             Own an Account?{" "}

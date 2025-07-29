@@ -40,7 +40,7 @@ export function PasswordInput({
           {showPassword ? <Icons.eyeClose /> : <Icons.eyeOpen />}
         </button>
       </div>
-      {error && <p className="error-text">{error}</p>}
+      {error && <p className="input-error-text">{error}</p>}
     </div>
   );
 }

@@ -9,7 +9,7 @@ export function Home() {
 
   const handleLogOut = () => {
     signOut(getAuth())
-      .then(() => navigate("/home"))
+      .then(() => navigate("/login"))
       .catch((e) => console.log(e.error));
   };
   
