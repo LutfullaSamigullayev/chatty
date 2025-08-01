@@ -5,7 +5,7 @@ export function Chat() {
   return (
     <div className="chat-wrapper">
       <div className="contacts-box">
-        {/* <InputSearch />
+        <InputSearch />
         <UserContact
           userImgUrl="/users/user1.jpg"
           size={49}
@@ -23,7 +23,7 @@ export function Chat() {
           gap
           isActive
           activeDotTop
-        /> */}
+        />
         <UserMassage
           massage="Roland Barthes"
           time="2:16"

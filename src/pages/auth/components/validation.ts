@@ -1,3 +1,7 @@
+export const validateUsername = (value: string) => {
+  return value.trim().length < 3 ? "Username must be at least 3 characters." : ''
+}
+
 export const validateEmail = (value: string) => {
   const pattern = /^[\w.-]+@(gmail\.com|mail\.ru)$/;
   return !pattern.test(value)

@@ -8,12 +8,21 @@ import {
   UserNameInput,
 } from "./components";
 import "./components/authStyles.css";
-import { validateEmail, validatePassword } from "./components/validation";
+import {
+  validateEmail,
+  validatePassword,
+  validateUsername,
+} from "./components/validation";
 import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import { ref, set } from "firebase/database";
+import { db } from "../../firebase/config";
 
 export function Register() {
   const navigate = useNavigate();
+
+  const [username, setUsername] = useState("");
+  const [usernameError, setUsernameError] = useState("");
 
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -26,14 +35,26 @@ export function Register() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
+    const usernameErr = validateUsername(username)
     const emailErr = validateEmail(email);
     const passwordErr = validatePassword(password);
 
+    setUsernameError(usernameErr)
     setEmailError(emailErr);
     setPasswordError(passwordErr);
 
-    if (!emailErr && !passwordErr) {
+    if (!usernameErr && !emailErr && !passwordErr) {
       createUserWithEmailAndPassword(getAuth(), email, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+
+          // Realtime DB ga username saqlaymiz
+          const userRef = ref(db, "users/" + user.uid);
+          return set(userRef, {
+            email: user.email,
+            username: username,
+          });
+        })
         .then(() => navigate("/home"))
         .catch(() => setSubmitError(true));
     }
@@ -49,7 +70,12 @@ export function Register() {
           </h1>
           <GoogleBtn />
           <form className="auth-form" onSubmit={handleSubmit}>
-            <UserNameInput />
+            <UserNameInput
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              error={usernameError}
+              onBlur={() => setUsernameError(validateUsername(username))}
+            />
             <EmailInput
               value={email}
               onChange={(e) => setEmail(e.target.value)}
