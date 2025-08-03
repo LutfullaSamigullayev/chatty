@@ -20,9 +20,19 @@ export function Home() {
           <Icons.logo />
           <h1 className="logo-title">Chatty</h1>
         </div>
+        <div className="header-actions">
+        <button className="user-profile">
+        <img className="user-profile-img" src="/users/user1.jpg" alt="user" />
+        
+         {/* <div className="user-profile-img default-img">
+          L
+         </div> */}
+        Username
+        </button>
         <button onClick={handleLogOut} className="btn-logOut">
           Log Out
         </button>
+        </div>
       </header>
       <div className="main-wrapper">
         <Chat />

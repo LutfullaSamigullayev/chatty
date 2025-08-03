@@ -22,6 +22,32 @@
 .logo-title {
     user-select: none;
 }
+.header-actions {
+    display: flex;
+    column-gap: 24px;
+}
+.user-profile {
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+    font-size: 20px;
+    color: var(--color-white);
+    font-weight: 700;
+    cursor: pointer;
+}
+.user-profile-img {
+    border-radius: 50%;
+    object-fit: cover;
+    width: 50px;
+    height: 50px;
+}
+.default-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-primary);
+}
 .btn-logOut {
     background-color: var(--color-primary);
     border-radius: 16px;
