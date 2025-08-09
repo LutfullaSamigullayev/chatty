@@ -19,6 +19,8 @@ export function GoogleBtn() {
         await set(userRef, {
           email: user.email,
           username: user.displayName || 'No Name',
+          photoURL: user.photoURL || '',
+          bio: '',
         })
       }
       navigate('/home')

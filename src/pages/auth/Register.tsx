@@ -17,9 +17,12 @@ import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import { ref, set } from "firebase/database";
 import { db } from "../../firebase/config";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../redux/slices/userSlice";
 
 export function Register() {
   const navigate = useNavigate();
+  const dispatch = useDispatch()
 
   const [username, setUsername] = useState("");
   const [usernameError, setUsernameError] = useState("");
@@ -53,7 +56,17 @@ export function Register() {
           return set(userRef, {
             email: user.email,
             username: username,
-          });
+            photoURL: '',
+            bio: ''
+          }).then(() => {
+            dispatch(setUser({
+              uid: user.uid,
+              email: user.email || '',
+              username: username,
+              photoURL: '',
+              bio: '',
+            }));
+          })
         })
         .then(() => navigate("/home"))
         .catch(() => setSubmitError(true));

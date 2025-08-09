@@ -1,7 +1,8 @@
 import { SVGProps } from "react";
-
+//  -----------  Icon Types  -----------
 export type IconProps = SVGProps<SVGSVGElement>;
 
+//  -------------------  Form Types  -------------------
 export interface authSubmit {
   title: string;
 }
@@ -12,6 +13,7 @@ export interface inputPropsType {
   onBlur: () => void;
 }
 
+//  -------------------  Chat Types  -------------------
 type userImgSize = 49 | 40 | 36;
 export interface userImg {
   src: string;
@@ -36,4 +38,13 @@ export interface userMassageType {
   time?: string;
   receiver?: boolean;
   read?:boolean
+}
+
+//  -------------------  Slice Types  -------------------
+export interface UserStateType {
+  uid: string;
+  email: string;
+  username: string;
+  photoURL: string;
+  bio: string;
 }

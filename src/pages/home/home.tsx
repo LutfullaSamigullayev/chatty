@@ -1,18 +1,22 @@
-import { getAuth, signOut } from "firebase/auth";
+import { useDispatch, useSelector } from "react-redux";
 import { Icons } from "../../icons";
 import { Chat } from "../chat/chat";
 import "./components/homeStyles.css";
-import { useNavigate } from "react-router-dom";
+import { RootState } from "../../redux/store";
+import { clearUser } from "../../redux/slices/userSlice";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase/config";
+import { ProfileModal } from "./components/profileModal";
 
 export function Home() {
-  const navigate = useNavigate();
-
-  const handleLogOut = () => {
-    signOut(getAuth())
-      .then(() => navigate("/login"))
-      .catch((e) => console.log(e.error));
-  };
+  const dispatch = useDispatch()
+  const user = useSelector((state: RootState) => state.user)
   
+  const handleLogout = async () => {
+    await signOut(auth)
+    dispatch(clearUser())
+  }
+
   return (
     <div className="home-wrapper">
       <header className="header">
@@ -22,20 +26,24 @@ export function Home() {
         </div>
         <div className="header-actions">
         <button className="user-profile">
-        <img className="user-profile-img" src="/users/user1.jpg" alt="user" />
-        
-         {/* <div className="user-profile-img default-img">
-          L
-         </div> */}
-        Username
+          {user.photoURL ? (
+            <img className="user-profile-img" src={user.photoURL} alt="user-profile" />
+          ) : (
+         <div className="user-profile-img default-img">
+          {user.username.charAt(0).toUpperCase()}
+         </div>
+          )}
+        {user.username}
         </button>
-        <button onClick={handleLogOut} className="btn-logOut">
+        <button onClick={handleLogout} className="btn-logOut">
           Log Out
         </button>
         </div>
       </header>
       <div className="main-wrapper">
         <Chat />
+        
+        {/* <ProfileModal /> */}
       </div>
     </div>
   );
