@@ -43,7 +43,7 @@ export function Home() {
       <div className="main-wrapper">
         <Chat />
         
-        {/* <ProfileModal /> */}
+        <ProfileModal />
       </div>
     </div>
   );
