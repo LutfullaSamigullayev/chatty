@@ -4,7 +4,16 @@
     max-height: 100%;
     background-color: var(--color-white);
     border-radius: 16px;
+    display: flex;
 } 
 .contacts-box {
-    width: 360px;
+    min-width: 360px;
+    border: 1px solid black;
+}
+.chat-box {
+    width: 100%;
+    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    row-gap: 4px;
 }

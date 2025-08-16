@@ -1,4 +1,4 @@
-import { InputSearch, UserContact, UserMassage } from "./componenrts";
+import { InputSearch, UserContact, UserMessage } from "./componenrts";
 import "./componenrts/chatStyle.css";
 
 export function Chat() {
@@ -24,22 +24,25 @@ export function Chat() {
           isActive
           activeDotTop
         />
-        <UserMassage
-          massage="Roland Barthes"
+      </div>
+      <div className="chat-box">
+        <UserMessage
+          message="Roland Barthes"
           time="2:16"
           
         />
-        <UserMassage
-          massage="What was his vision statement?"
+        <UserMessage
+          message="What was his vision statement?"
           time="2:18"
           receiver
         />
-        <UserMassage
-          massage="“Ultimately in order to see a
+        <UserMessage
+          message="“Ultimately in order to see a
 photograph well, it is best to
 look away or close your eyes.”"
           time="2:20"
         />
+
       </div>
     </div>
   );

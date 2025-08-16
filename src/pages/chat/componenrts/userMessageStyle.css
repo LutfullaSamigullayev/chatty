@@ -1,10 +1,14 @@
-.user-massage-box {
+.user-message-box {
     padding: 0 8px;
     display: flex;
+    max-width: 50%;
     width: fit-content;
+    float: right;
 }
-
-.user-massage {
+.right-message {
+    align-self: flex-end;
+}
+.user-message {
     padding: 8px 8px;
     overflow: hidden;
 }
@@ -18,7 +22,7 @@
     background-color: var(--color-gray-200);
     float: inline-start;
 }
-.user-massage-time {
+.user-message-time {
     display: flex;
     column-gap: 8px;
     align-items: end;

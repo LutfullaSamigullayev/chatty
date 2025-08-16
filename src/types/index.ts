@@ -33,8 +33,8 @@ export interface userContactType {
   gap?: boolean;
   activeDotTop?: boolean;
 }
-export interface userMassageType {
-  massage: string;
+export interface userMessageType {
+  message: string;
   time?: string;
   receiver?: boolean;
   read?:boolean
