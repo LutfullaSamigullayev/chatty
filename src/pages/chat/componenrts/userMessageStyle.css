@@ -23,6 +23,7 @@
     float: inline-start;
 }
 .user-message-time {
+    user-select: none;
     display: flex;
     column-gap: 8px;
     align-items: end;

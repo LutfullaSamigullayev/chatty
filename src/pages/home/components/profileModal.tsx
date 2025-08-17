@@ -1,9 +1,9 @@
-import { useState } from "react";
+// import { useState } from "react";
 import "./profileModalStyle.css";
 import { Icons } from "../../../icons";
 
 export function ProfileModal() {
-  const [edit, setEdit] = useState(false);
+  // const [edit, setEdit] = useState(false);
   return (
     <div className="profile-modal-wrapper">
       <div className="profile-box">
