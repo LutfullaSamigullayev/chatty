@@ -6,16 +6,16 @@ import { RootState } from "../../redux/store";
 import { clearUser } from "../../redux/slices/userSlice";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase/config";
-import { ProfileModal } from "./components/profileModal";
+// import { ProfileModal } from "./components/profileModal";
 
 export function Home() {
-  const dispatch = useDispatch()
-  const user = useSelector((state: RootState) => state.user)
-  
+  const dispatch = useDispatch();
+  const user = useSelector((state: RootState) => state.user);
+
   const handleLogout = async () => {
-    await signOut(auth)
-    dispatch(clearUser())
-  }
+    await signOut(auth);
+    dispatch(clearUser());
+  };
 
   return (
     <div className="home-wrapper">
@@ -25,24 +25,28 @@ export function Home() {
           <h1 className="logo-title">Chatty</h1>
         </div>
         <div className="header-actions">
-        <button className="user-profile">
-          {user.photoURL ? (
-            <img className="user-profile-img" src={user.photoURL} alt="user-profile" />
-          ) : (
-         <div className="user-profile-img default-img">
-          {user.username.charAt(0).toUpperCase()}
-         </div>
-          )}
-        {user.username}
-        </button>
-        <button onClick={handleLogout} className="btn-logOut">
-          Log Out
-        </button>
+          <button className="user-profile">
+            {user.photoURL ? (
+              <img
+                className="user-profile-img"
+                src={user.photoURL}
+                alt="user-profile"
+              />
+            ) : (
+              <div className="user-profile-img default-img">
+                {user.username.charAt(0).toUpperCase()}
+              </div>
+            )}
+            {user.username}
+          </button>
+          <button onClick={handleLogout} className="btn-logOut">
+            Log Out
+          </button>
         </div>
       </header>
       <div className="main-wrapper">
         <Chat />
-        
+
         {/* <ProfileModal /> */}
       </div>
     </div>
