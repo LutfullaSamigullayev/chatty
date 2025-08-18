@@ -9,7 +9,7 @@ export function LeftBox() {
       </div>
       <img className="auth-left-img" src="/center.png" alt="chatImage" />
       <div className="auth-left-content">
-        <h2>Online Community For Front-end Developers</h2>
+        <h2>Online Community For Back-end Developers</h2>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididun.
