@@ -165,7 +165,7 @@ export function Chat() {
                       })
                     : "" // serverTimestamp qaytguncha bo‘sh bo‘lishi mumkin
                 }
-                receiver={m.sender !== myUser.uid}
+                receiver={m.sender === myUser.uid}
               />
             ))}
             <div ref={bottomRef} />
