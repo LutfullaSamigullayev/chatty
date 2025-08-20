@@ -19,8 +19,12 @@ export interface userImg {
   src: string;
   alt: string;
   size: userImgSize;
-  activeDotTop?: boolean;
   isActive?: boolean;
+  activeDotTop?: boolean;
+}
+export interface ChatProfileType extends userImg {
+  username: string;
+  lastTime?: string;
 }
 export interface userContactType {
   userImgUrl: string;
@@ -37,7 +41,7 @@ export interface userMessageType {
   message: string;
   time?: string;
   receiver?: boolean;
-  read?:boolean
+  read?: boolean;
 }
 
 //  -------------------  Slice Types  -------------------

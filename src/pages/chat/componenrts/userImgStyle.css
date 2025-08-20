@@ -7,6 +7,7 @@
 .user-img {
   border-radius: 50%;
   object-fit: cover;
+  display: flex;
 }
 .username-img {
   border-radius: 50%;
@@ -19,16 +20,16 @@
   font-size: 24px;
 }
 .user-img-49 {
-  width: 49px;
-  height: 49px;
+  width: 49px !important;
+  height: 49px !important;
 }
 .user-img-40 {
-  width: 40px;
-  height: 40px;
+  width: 40px !important;
+  height: 40px !important;
 }
 .user-img-36 {
-  width: 36px;
-  height: 36px;
+  width: 36px !important;
+  height: 36px !important;
 }
 .user-img-active-dot {
   position: absolute;

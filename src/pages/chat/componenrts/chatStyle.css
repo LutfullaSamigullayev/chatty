@@ -34,10 +34,6 @@
 /* .chat-empty {
   width: 100%;
 } */
-.user-contact-profile {
-  padding: 10px;
-  border-bottom: 1px solid var(--color-gray-300);
-}
 
 .chat-send-form {
   width: 100%;

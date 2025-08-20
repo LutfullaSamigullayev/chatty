@@ -1,5 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { InputSearch, UserContact, UserMessage } from "./componenrts";
+import {
+  ChatProfile,
+  InputSearch,
+  UserContact,
+  UserMessage,
+} from "./componenrts";
 import "./componenrts/chatStyle.css";
 import {
   limitToLast,
@@ -140,18 +145,15 @@ export function Chat() {
       {/* O‘ng panel: tanlangan chat */}
       {chatContact ? (
         <div className="chat-box-wrapper">
-          <div className="user-contact-profile">
-            <UserContact
-              userImgUrl={chatContact.photoURL}
-              size={40}
-              userName={chatContact.username}
-              massage="Online"
-              gap
-              isActive
-              activeDotTop
-            />
-          </div>
-
+          <ChatProfile
+            username={chatContact.username}
+            src={chatContact.photoURL}
+            size={40}
+            alt={chatContact.username}
+            lastTime={"Online"}
+            isActive
+            activeDotTop
+          />
           <div className="chat-box">
             {messages.map((m, i) => (
               <UserMessage
