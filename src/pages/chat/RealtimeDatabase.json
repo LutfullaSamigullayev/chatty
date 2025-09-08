@@ -1,0 +1,61 @@
+{
+  "users": {
+    "user123": {
+      "displayName": "Ali",
+      "email": "ali@example.com",
+      "photoURL": "https://.../ali.jpg"
+    },
+    "user456": {
+      "displayName": "Vali",
+      "email": "vali@example.com",
+      "photoURL": "https://.../vali.jpg"
+    }
+  },
+
+  "conversations": {
+    "conv_123_456": {
+      "participants": {
+        "user123": true,
+        "user456": true
+      },
+      "lastMessage": "Qalaysan?",
+      "updatedAt": 1694092850123,
+      "unreadCount": {
+        "user123": 0,
+        "user456": 3
+      }
+    }
+  },
+
+  "messages": {
+    "conv_123_456": {
+      "msg1": {
+        "text": "Salom!",
+        "senderId": "user123",
+        "createdAt": 1694092839123,
+        "status": {
+          "user456": "delivered"
+        }
+      },
+      "msg2": {
+        "text": "Qalaysan?",
+        "senderId": "user456",
+        "createdAt": 1694092850123,
+        "status": {
+          "user123": "seen"
+        }
+      }
+    }
+  },
+
+  "presence": {
+    "user123": {
+      "state": "online",
+      "lastChanged": 1694092850123
+    },
+    "user456": {
+      "state": "offline",
+      "lastChanged": 1694092800000
+    }
+  }
+}

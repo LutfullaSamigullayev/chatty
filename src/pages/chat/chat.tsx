@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import {
   ChatProfile,
   InputSearch,
-  UserContact,
+  UserContactList,
   UserMessage,
 } from "./componenrts";
 import "./componenrts/chatStyle.css";
@@ -29,7 +29,7 @@ type RTDBMessage = {
 const getChatId = (a: string, b: string) => (a > b ? `${a}_${b}` : `${b}_${a}`);
 
 export function Chat() {
-  const [users, setUsers] = useState<any[]>([]);
+  
   const myUser = useSelector((state: RootState) => state.user);
   const [chatContact, setChatContact] = useState<any | null>(null);
 
@@ -40,21 +40,7 @@ export function Chat() {
   // Chat scrollni pastga tushirish uchun ref
   const bottomRef = useRef<HTMLDivElement>(null);
 
-  // 2.1) Kontaktlar ro‘yxatini olish va o‘zimni filtrlash
-  useEffect(() => {
-    const userRef = ref(db, "users/");
-    const unsubcribe = onValue(userRef, (snapshot) => {
-      if (snapshot.exists()) {
-        const data = snapshot.val();
-        const userList = Object.entries(data) // [uid, user]
-          .filter(([_, user]: any) => user.email !== myUser.email)
-          .map(([uid, user]: any) => ({ ...user, uid })); // uid ni qo‘shib qo‘yish
-        setUsers(userList);
-      }
-    });
-
-    return () => unsubcribe();
-  }, []);
+  
 
   // 2.2) Tanlangan kontakt bo‘lsa — shu chatdagi xabarlarni tinglash
   const chatId = useMemo(() => {
@@ -124,22 +110,7 @@ export function Chat() {
         <div>
           <InputSearch />
         </div>
-        <div className="user-contact-list">
-          {users.map((user, index) => (
-            <div key={index} onClick={() => setChatContact(user)}>
-              <UserContact
-                key={index}
-                userImgUrl={user.photoURL}
-                size={49}
-                userName={user.username}
-                massage="The weather will be perfect for the great salom salom"
-                time="9:41 AM"
-                massageCount={80}
-                isActive
-              />
-            </div>
-          ))}
-        </div>
+        <UserContactList setChatContact={setChatContact} />
       </div>
 
       {/* O‘ng panel: tanlangan chat */}
