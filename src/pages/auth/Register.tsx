@@ -48,28 +48,35 @@ export function Register() {
 
     if (!usernameErr && !emailErr && !passwordErr) {
       createUserWithEmailAndPassword(getAuth(), email, password)
-        .then((userCredential) => {
-          const user = userCredential.user;
+  .then((userCredential) => {
+    const user = userCredential.user;
 
-          // Realtime DB ga username saqlaymiz
-          const userRef = ref(db, "users/" + user.uid);
-          return set(userRef, {
-            email: user.email,
-            username: username,
-            photoURL: '',
-            bio: ''
-          }).then(() => {
-            dispatch(setUser({
-              uid: user.uid,
-              email: user.email || '',
-              username: username,
-              photoURL: '',
-              bio: '',
-            }));
-          })
-        })
-        .then(() => navigate("/home"))
-        .catch(() => setSubmitError(true));
+    // Realtime DB ga foydalanuvchi saqlash
+    const userRef = ref(db, "users/" + user.uid);
+    return set(userRef, {
+      email: user.email,
+      displayName: username,   // 🔹 username emas, displayName
+      photoURL: ""
+    }).then(() => {
+      // Presence tuguniga ham yozamiz
+      const presenceRef = ref(db, "presence/" + user.uid);
+      set(presenceRef, {
+        state: "offline",
+        lastChanged: Date.now()
+      });
+
+      // Reduxga yozish
+      dispatch(setUser({
+        uid: user.uid,
+        email: user.email || "",
+        displayName: username,  // 🔹
+        photoURL: "",
+        bio: ""
+      }));
+    });
+  })
+  .then(() => navigate("/home"))
+  .catch(() => setSubmitError(true));
     }
   };
 

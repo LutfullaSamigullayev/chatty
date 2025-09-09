@@ -4,7 +4,7 @@ import { UserStateType } from "./../../types/index";
 const initialState: UserStateType = {
   uid: "",
   email: "",
-  username: "",
+  displayName: "",
   photoURL: "",
   bio: "",
 };
@@ -16,14 +16,14 @@ export const userSlice = createSlice({
     setUser: (state, action: PayloadAction<UserStateType>) => {
       state.uid = action.payload.uid;
       state.email = action.payload.email;
-      state.username = action.payload.username;
+      state.displayName = action.payload.displayName;
       state.photoURL = action.payload.photoURL;
       state.bio = action.payload.bio;
     },
     clearUser: (state) => {
       state.uid = "";
       state.email = "";
-      state.username = "";
+      state.displayName = "";
       state.photoURL = "";
       state.bio = "";
     },

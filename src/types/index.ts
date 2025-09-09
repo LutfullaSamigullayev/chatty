@@ -29,7 +29,7 @@ export interface ChatProfileType extends userImg {
 export interface userContactType {
   userImgUrl: string;
   userName: string;
-  massage: string;
+  massage: string | undefined;
   size: userImgSize;
   massageCount?: number;
   time?: string;
@@ -48,7 +48,7 @@ export interface userMessageType {
 export interface UserStateType {
   uid: string;
   email: string;
-  username: string;
+  displayName: string;
   photoURL: string;
   bio: string;
 }

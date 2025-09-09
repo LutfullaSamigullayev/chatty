@@ -10,9 +10,14 @@ import "./components/authStyles.css";
 import { validateEmail, validatePassword } from "./components/validation";
 import { useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { ref, get, update } from "firebase/database";
+import { db } from "../../firebase/config";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../redux/slices/userSlice";
 
 export function Login() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -33,7 +38,33 @@ export function Login() {
 
     if (!emailErr && !passwordErr) {
       signInWithEmailAndPassword(getAuth(), email, password)
-        .then(() => navigate("/home"))
+        .then(async (userCredential) => {
+          const user = userCredential.user;
+
+          // Realtime Database’dan user ma’lumotini olish
+          const userSnap = await get(ref(db, "users/" + user.uid));
+          if (userSnap.exists()) {
+            const userData = userSnap.val();
+            dispatch(
+              setUser({
+                uid: user.uid,
+                email: user.email || "",
+                displayName: userData.displayName || "",
+                photoURL: userData.photoURL || "",
+                bio: userData.bio || "",
+              })
+            );
+          }
+
+          // Presence → online qilish
+          const presenceRef = ref(db, "presence/" + user.uid);
+          update(presenceRef, {
+            state: "online",
+            lastChanged: Date.now(),
+          });
+
+          navigate("/home");
+        })
         .catch(() => setSubmitError(true));
     }
   };
@@ -75,7 +106,7 @@ export function Login() {
           <p className="form-link">
             No Account yet?{" "}
             <a href="/register">
-              <b>UP</b>
+              <b>SIGN UP</b>
             </a>
           </p>
         </div>

@@ -1,3 +1,4 @@
+// src/pages/chat/Chat.tsx
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
   ChatProfile,
@@ -14,6 +15,9 @@ import {
   query,
   ref,
   serverTimestamp,
+  update,
+  set,
+  runTransaction,
 } from "firebase/database";
 import { db } from "../../firebase/config";
 import { useSelector } from "react-redux";
@@ -21,43 +25,41 @@ import { RootState } from "../../redux/store";
 import { Icons } from "../../icons";
 
 type RTDBMessage = {
-  sender: string;
   text: string;
-  createdAt?: number; // serverTimestamp qo‘yilganda dastlab undefined bo‘lishi mumkin
+  senderId: string;
+  createdAt?: number | object;
+  status?: Record<string, "sent" | "delivered" | "seen">;
 };
 
 const getChatId = (a: string, b: string) => (a > b ? `${a}_${b}` : `${b}_${a}`);
 
 export function Chat() {
-  
   const myUser = useSelector((state: RootState) => state.user);
   const [chatContact, setChatContact] = useState<any | null>(null);
 
-  // Xabarlar
-  const [messages, setMessages] = useState<RTDBMessage[]>([]);
+  const [messages, setMessages] = useState<{ id: string; data: RTDBMessage }[]>(
+    []
+  );
   const [text, setText] = useState("");
 
-  // Chat scrollni pastga tushirish uchun ref
   const bottomRef = useRef<HTMLDivElement>(null);
 
-  
-
-  // 2.2) Tanlangan kontakt bo‘lsa — shu chatdagi xabarlarni tinglash
   const chatId = useMemo(() => {
     if (!chatContact?.uid || !myUser?.uid) return null;
     return getChatId(myUser.uid, chatContact.uid);
   }, [myUser?.uid, chatContact?.uid]);
 
+  // 🔹 Xabarlarni olish + delivered status
   useEffect(() => {
     if (!chatId) {
       setMessages([]);
       return;
     }
-    // Xabarlarni vaqt bo‘yicha olish
+
     const messagesRef = query(
-      ref(db, `chats/${chatId}/messages`),
+      ref(db, `messages/${chatId}`),
       orderByChild("createdAt"),
-      limitToLast(200) // oxirgi 200 ta xabar
+      limitToLast(200)
     );
 
     const unsubscribe = onValue(messagesRef, (snap) => {
@@ -65,41 +67,110 @@ export function Chat() {
         setMessages([]);
         return;
       }
-      // Snapshot -> massiv
-      const arr: RTDBMessage[] = [];
+
+      const arr: { id: string; data: RTDBMessage }[] = [];
       snap.forEach((child) => {
-        arr.push(child.val());
+        const msg = child.val() as RTDBMessage;
+        const msgId = child.key as string;
+
+        // Agar bu xabar menga kelgan bo‘lsa va status = sent bo‘lsa → delivered
+        if (
+          msg.senderId !== myUser.uid &&
+          msg.status?.[myUser.uid] === "sent"
+        ) {
+          update(ref(db, `messages/${chatId}/${msgId}/status`), {
+            [myUser.uid]: "delivered",
+          });
+        }
+
+        arr.push({ id: msgId, data: msg });
       });
       setMessages(arr);
     });
 
     return () => unsubscribe();
-  }, [chatId]);
+  }, [chatId, myUser.uid]);
 
-  // 2.3) Xabar yuborish
-  const handleSendMessage = (e: React.FormEvent) => {
+  // 🔹 Chat ochilganda unreadCount reset + seen qilish
+  useEffect(() => {
+    if (chatId && myUser?.uid) {
+      // unreadCount ni nolga tushirish
+      const unreadRef = ref(
+        db,
+        `conversations/${chatId}/unreadCount/${myUser.uid}`
+      );
+      set(unreadRef, 0);
+
+      // kelgan barcha xabarlarni seen qilish
+      messages.forEach((m) => {
+        if (
+          m.data.senderId !== myUser.uid &&
+          m.data.status?.[myUser.uid] !== "seen"
+        ) {
+          update(ref(db, `messages/${chatId}/${m.id}/status`), {
+            [myUser.uid]: "seen",
+          });
+        }
+      });
+    }
+  }, [chatId, myUser?.uid, messages]);
+
+  // 🔹 Xabar yuborish
+  const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
     const trimmed = text.trim();
-    if (!trimmed || !chatId || !myUser?.uid) return;
-    const messagesRef = ref(db, `chats/${chatId}/messages`);
-    push(messagesRef, {
-      sender: myUser.uid,
-      text: trimmed,
-      createdAt: serverTimestamp(), // server vaqti
-    });
+    if (!trimmed || !chatId || !myUser?.uid || !chatContact?.uid) return;
 
-    // ixtiyoriy: chat meta yangilash (listda ishlatish uchun)
-    const metaRef = ref(db, `chats/${chatId}/meta`);
-    push(metaRef, {
-      lastMessage: trimmed,
-      lastTime: serverTimestamp(),
-      participants: { [myUser.uid]: true, [chatContact!.uid]: true },
+    const messagesRef = ref(db, `messages/${chatId}`);
+    const newMsgRef = push(messagesRef);
+
+    const newMsg: RTDBMessage = {
+      text: trimmed,
+      senderId: myUser.uid,
+      createdAt: serverTimestamp(),
+      status: { [chatContact.uid]: "sent" },
+    };
+
+    await update(newMsgRef, newMsg);
+
+    // 🔹 conversations yangilash (transaction orqali)
+    const convRef = ref(db, `conversations/${chatId}`);
+    await runTransaction(convRef, (conv) => {
+      if (conv) {
+        conv.lastMessage = trimmed;
+        conv.updatedAt = Date.now();
+        conv.participants = {
+          [myUser.uid]: true,
+          [chatContact.uid]: true,
+        };
+        if (!conv.unreadCount) conv.unreadCount = {};
+        // receiver uchun unreadCount ++
+        conv.unreadCount[chatContact.uid] =
+          (conv.unreadCount[chatContact.uid] || 0) + 1;
+        // sender uchun reset
+        conv.unreadCount[myUser.uid] = 0;
+      } else {
+        // Agar conv mavjud bo‘lmasa, yangisini yaratamiz
+        conv = {
+          lastMessage: trimmed,
+          updatedAt: Date.now(),
+          participants: {
+            [myUser.uid]: true,
+            [chatContact.uid]: true,
+          },
+          unreadCount: {
+            [chatContact.uid]: 1,
+            [myUser.uid]: 0,
+          },
+        };
+      }
+      return conv;
     });
 
     setText("");
   };
 
-  // 2.4) Har yangi xabar kelganda pastga scroll
+  // 🔹 Scrollni pastga tushirish
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages.length]);
@@ -107,38 +178,40 @@ export function Chat() {
   return (
     <div className="chat-wrapper">
       <div className="contacts-box">
-        <div>
-          <InputSearch />
-        </div>
+        <InputSearch />
         <UserContactList setChatContact={setChatContact} />
       </div>
 
-      {/* O‘ng panel: tanlangan chat */}
       {chatContact ? (
         <div className="chat-box-wrapper">
           <ChatProfile
-            username={chatContact.username}
+            username={chatContact.displayName}
             src={chatContact.photoURL}
             size={40}
-            alt={chatContact.username}
+            alt={chatContact.displayName}
             lastTime={"Online"}
             isActive
             activeDotTop
           />
+
           <div className="chat-box">
-            {messages.map((m, i) => (
+            {messages.map((m) => (
               <UserMessage
-                key={i}
-                message={m.text}
+                key={m.id}
+                message={m.data.text}
                 time={
-                  m.createdAt
-                    ? new Date(m.createdAt).toLocaleTimeString([], {
+                  typeof m.data.createdAt === "number"
+                    ? new Date(m.data.createdAt).toLocaleTimeString([], {
                         hour: "2-digit",
                         minute: "2-digit",
                       })
-                    : "" // serverTimestamp qaytguncha bo‘sh bo‘lishi mumkin
+                    : "..."
                 }
-                receiver={m.sender === myUser.uid}
+                receiver={m.data.senderId === myUser.uid}
+                read={
+                  m.data.senderId === myUser.uid &&
+                  m.data.status?.[chatContact.uid] === "seen"
+                }
               />
             ))}
             <div ref={bottomRef} />

@@ -16,6 +16,8 @@ export function Home() {
     await signOut(auth);
     dispatch(clearUser());
   };
+  console.log(user.displayName)
+
 
   return (
     <div className="home-wrapper">
@@ -34,10 +36,10 @@ export function Home() {
               />
             ) : (
               <div className="user-profile-img default-img">
-                {user.username.charAt(0).toUpperCase()}
+                {user.displayName && user.displayName.charAt(0).toUpperCase()}
               </div>
             )}
-            {user.username}
+            {user.displayName}
           </button>
           <button onClick={handleLogout} className="btn-logOut">
             Log Out

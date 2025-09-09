@@ -14,7 +14,7 @@ export function UserContact({
   activeDotTop,
 }: userContactType) {
   return (
-    <div className={`contact-box ${gap && "contact-box-gap"}`}>
+    <div className={`contact-box ${gap ? "contact-box-gap" : ""}`}>
       <UserImg
         src={userImgUrl}
         alt={userName}
@@ -22,14 +22,20 @@ export function UserContact({
         isActive={isActive}
         activeDotTop={activeDotTop}
       />
-      <div className={`contact-context ${gap && "contact-context-gap"}`}>
+      <div className={`contact-context ${gap ? "contact-context-gap" : ""}`}>
         <h3 className="contact-name">{userName}</h3>
-        <div className="contact-massege-box">
-          <p className="contact-massage">{massage}</p>
-          {time && <p>{time}</p>}
-        </div>
+
+        {/* 🔹 faqat massage yoki time bo‘lsa chiqadi */}
+        {(massage || time) && (
+          <div className="contact-massege-box">
+            {massage && <p className="contact-massage">{massage}</p>}
+            {time && <p>{time}</p>}
+          </div>
+        )}
       </div>
-      {massageCount && (
+
+      {/* 🔹 faqat unreadCount > 0 bo‘lsa chiqadi */}
+      {massageCount && massageCount > 0 && (
         <span className="contact-massage-count">{massageCount}</span>
       )}
     </div>
