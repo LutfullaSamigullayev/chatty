@@ -6,7 +6,7 @@ import { Home } from "./pages/home/home";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "./firebase/config";
-import { get, ref, update, onDisconnect } from "firebase/database";
+import { get, ref, update, onDisconnect, serverTimestamp } from "firebase/database";
 import { useDispatch, useSelector } from "react-redux";
 import { clearUser, setUser } from "./redux/slices/userSlice";
 import { RootState } from "./redux/store";
@@ -35,15 +35,17 @@ function App() {
             })
           );
 
-          // 🔹 Presence ni online qilish
+          // 🔹 Presence ni yozish
           const presenceRef = ref(db, "presence/" + currentUser.uid);
+
           await update(presenceRef, {
             state: "online",
-            lastChanged: Date.now(),
+            lastSeen: serverTimestamp(), // ✅ server vaqti
           });
+
           onDisconnect(presenceRef).update({
             state: "offline",
-            lastChanged: Date.now(),
+            lastSeen: serverTimestamp(), // ✅ server vaqti
           });
         }
       } else {

@@ -6,7 +6,6 @@ export function ChatProfile({
   username,
   lastTime,
   src,
-  alt,
   size,
   isActive,
   activeDotTop,
@@ -15,7 +14,7 @@ export function ChatProfile({
     <div className="user-contact-profile">
       <UserImg
         src={src}
-        alt={alt}
+        alt={username} // fallback sifatida username ishlatyapmiz
         size={size}
         isActive={isActive}
         activeDotTop={activeDotTop}
@@ -23,7 +22,9 @@ export function ChatProfile({
 
       <div className="contact-profile-context">
         <p className="contact-profile-name">{username}</p>
-        <span className="profile-last-time">{lastTime}</span>
+
+        {/* 🔹 lastTime faqat mavjud bo‘lsa chiqariladi */}
+        {lastTime && <span className="profile-last-time">{lastTime}</span>}
       </div>
     </div>
   );

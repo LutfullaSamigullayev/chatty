@@ -24,6 +24,7 @@ type ChatContact = {
   unreadCount?: number;
   convId?: string | null;
   isActive?: boolean;
+  lastSeen?: number; // 🔹 qo‘shildi
 };
 
 type Props = {
@@ -108,6 +109,7 @@ export function UserContactList({ setChatContact }: Props) {
         const unreadCount: number =
           (convData?.unreadCount && convData.unreadCount[myUid]) || 0;
         const isActive: boolean = presenceMap?.[uid]?.state === "online";
+        const lastSeen: number = presenceMap?.[uid]?.lastSeen || 0;
 
         return {
           uid,
@@ -119,6 +121,7 @@ export function UserContactList({ setChatContact }: Props) {
           unreadCount,
           convId,
           isActive,
+          lastSeen, // 🔹 qo‘shildi
         } as ChatContact;
       });
 
@@ -159,19 +162,24 @@ export function UserContactList({ setChatContact }: Props) {
               photoURL: contact.photoURL,
               email: contact.email,
               convId: contact.convId || undefined,
+              isActive: contact.isActive,
+              lastSeen: contact.lastSeen, // 🔹 qo‘shildi
             })
           }
         >
           <UserContact
-  userImgUrl={contact.photoURL ?? ""}
-  size={49}
-  userName={contact.displayName}
-  massage={contact.lastMessage || undefined}      // ✅ faqat bo‘lsa yuboriladi
-  time={contact.updatedAt ? formatTime(contact.updatedAt) : undefined} // ✅ vaqt bo‘lmasa null
-  massageCount={contact.unreadCount && contact.unreadCount > 0 ? contact.unreadCount : undefined} // ✅ 0 bo‘lsa yuborilmaydi
-  isActive={!!contact.isActive}
-/>
-
+            userImgUrl={contact.photoURL ?? ""}
+            size={49}
+            userName={contact.displayName}
+            massage={contact.lastMessage || undefined} // ✅ faqat bo‘lsa yuboriladi
+            time={contact.updatedAt ? formatTime(contact.updatedAt) : undefined} // ✅ vaqt bo‘lmasa null
+            massageCount={
+              contact.unreadCount && contact.unreadCount > 0
+                ? contact.unreadCount
+                : undefined
+            } // ✅ 0 bo‘lsa yuborilmaydi
+            isActive={!!contact.isActive}
+          />
         </div>
       ))}
     </div>

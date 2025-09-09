@@ -189,8 +189,18 @@ export function Chat() {
             src={chatContact.photoURL}
             size={40}
             alt={chatContact.displayName}
-            lastTime={"Online"}
-            isActive
+            lastTime={
+              chatContact.isActive
+                ? "Online"
+                : chatContact.lastSeen
+                ? "Last seen " +
+                  new Date(chatContact.lastSeen).toLocaleTimeString([], {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })
+                : "Offline"
+            }
+            isActive={!!chatContact.isActive}
             activeDotTop
           />
 
