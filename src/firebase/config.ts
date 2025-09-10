@@ -8,13 +8,13 @@ import { getDatabase } from 'firebase/database'
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyA1TVV4dPqrDrB_vu8e8IkwVhVhfVtVZ_Q",
-  authDomain: "chatty-webchat.firebaseapp.com",
-  projectId: "chatty-webchat",
-  storageBucket: "chatty-webchat.firebasestorage.app",
-  messagingSenderId: "206464026674",
-  appId: "1:206464026674:web:1b80345ee4b6840fc1d42b",
-  databaseURL: "https://chatty-webchat-default-rtdb.firebaseio.com/"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  databaseURL: import.meta.env.VITE_FIREBASE_DATABASE_URL,
 };
 
 // Initialize Firebase
