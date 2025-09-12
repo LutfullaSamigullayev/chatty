@@ -23,6 +23,7 @@ import { db } from "../../firebase/config";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { Icons } from "../../icons";
+import { formatLastSeen } from "@/utils";
 
 type RTDBMessage = {
   text: string;
@@ -189,17 +190,7 @@ export function Chat() {
             src={chatContact.photoURL}
             size={40}
             alt={chatContact.displayName}
-            lastTime={
-              chatContact.isActive
-                ? "Online"
-                : chatContact.lastSeen
-                ? "Last seen " +
-                  new Date(chatContact.lastSeen).toLocaleTimeString([], {
-                    hour: "2-digit",
-                    minute: "2-digit",
-                  })
-                : "Offline"
-            }
+            lastTime={formatLastSeen(chatContact.lastSeen, chatContact.isActive)}
             isActive={!!chatContact.isActive}
             activeDotTop
           />

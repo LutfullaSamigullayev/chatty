@@ -1,0 +1,1 @@
+export { formatLastSeen } from './formatLastSeen'
