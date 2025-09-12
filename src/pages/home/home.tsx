@@ -16,8 +16,6 @@ export function Home() {
     await signOut(auth);
     dispatch(clearUser());
   };
-  console.log(user.displayName)
-
 
   return (
     <div className="home-wrapper">
