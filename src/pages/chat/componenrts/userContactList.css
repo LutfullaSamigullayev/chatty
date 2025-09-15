@@ -1,0 +1,22 @@
+.user-contact-list {
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* qolgan bo‘sh joyni egallaydi */
+    overflow-y: auto; /* scroll chiqadi */
+    padding-right: 4px; /* scroll joyi toza ko‘rinishi uchun */
+    gap: 8px;
+    /* Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: #888 transparent;
+  }
+  /* Webkit (Chrome, Safari, Edge) */
+  .user-contact-list::-webkit-scrollbar {
+    width: 6px;
+  }
+  .user-contact-list::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 8px;
+  }
+  .user-contact-list::-webkit-scrollbar-track {
+    background: transparent;
+  }
