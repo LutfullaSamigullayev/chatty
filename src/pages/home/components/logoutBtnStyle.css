@@ -1,0 +1,15 @@
+.btn-logOut {
+  background-color: var(--color-primary);
+  border-radius: 16px;
+  color: var(--color-white);
+  font-size: 16px;
+  padding: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+@media only screen and (max-width: 768px) {
+  .btn-logOut {
+    font-size: 15px;
+    padding: 8px;
+  }
+}
