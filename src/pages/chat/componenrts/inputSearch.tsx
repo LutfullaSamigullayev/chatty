@@ -5,7 +5,7 @@ export function InputSearch() {
   return (
     <div className="search-wrapper">
       <div className="search-box">
-        <Icons.search />
+        <Icons.search color="#747881"/>
         <input
           className="search-input"
           type="search"
