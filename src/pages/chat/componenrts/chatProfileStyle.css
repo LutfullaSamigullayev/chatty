@@ -1,8 +1,21 @@
+.chat-profile-wrapper {
+  display: flex;
+  align-items: center;
+  column-gap: 4px;
+  padding: 0 4px;
+}
 .user-contact-profile {
   padding: 9px 8px;
   display: flex;
   align-items: center;
   column-gap: 18px;
+  cursor: pointer;
+}
+.back-contact-btn {
+/* display: none; */
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
   cursor: pointer;
 }
 .contact-profile-context {
@@ -20,3 +33,8 @@
   font-size: 14px;
   color: var(--color-gray-550);
 }
+/* @media only screen and (max-width: 600px) {
+  .back-contact-btn {
+    display: block;
+  }
+} */

@@ -25,6 +25,7 @@ export interface userImg {
 export interface ChatProfileType extends userImg {
   username: string;
   lastTime?: string;
+  backToContact: () => void;
 }
 export interface userContactType {
   userImgUrl: string;
