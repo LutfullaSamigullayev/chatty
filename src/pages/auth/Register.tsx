@@ -19,6 +19,7 @@ import { ref, set } from "firebase/database";
 import { db } from "../../firebase/config";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../redux/slices/userSlice";
+import { Logo } from "./components/logo";
 
 export function Register() {
   const navigate = useNavigate();
@@ -84,6 +85,9 @@ export function Register() {
     <div className="auth-wrapper">
       <LeftBox />
       <div className="auth-right-wrapper">
+        <div className="auth-logo-box">
+                  <Logo />
+                </div>
         <div className="form-box">
           <h1 className="form-title">
             Join & Connect the Fastest Growing Online Community

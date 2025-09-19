@@ -12,6 +12,7 @@ import {
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { db } from "@/firebase/config";
+import './userContactList.css'
 
 /** Local types (moslashtirish mumkin) */
 type ChatContact = {

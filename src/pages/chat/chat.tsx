@@ -50,6 +50,10 @@ export function Chat() {
     return getChatId(myUser.uid, chatContact.uid);
   }, [myUser?.uid, chatContact?.uid]);
 
+  const backToContactList = () => {
+    setChatContact(null)
+  }
+
   // 🔹 Xabarlarni olish + delivered status
   useEffect(() => {
     if (!chatId) {
@@ -178,7 +182,8 @@ export function Chat() {
 
   return (
     <div className="chat-wrapper">
-      <div className="contacts-box">
+      
+      <div className={`contacts-box ${chatContact ? 'hidden' : 'active'}`}>
         <InputSearch />
         <UserContactList setChatContact={setChatContact} />
       </div>
@@ -193,6 +198,7 @@ export function Chat() {
             lastTime={formatLastSeen(chatContact.lastSeen, chatContact.isActive)}
             isActive={!!chatContact.isActive}
             activeDotTop
+            backToContact={backToContactList}
           />
 
           <div className="chat-box">

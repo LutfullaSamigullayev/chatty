@@ -1,0 +1,20 @@
+.auth-logo {
+  display: flex;
+  align-items: center;
+  column-gap: 14px;
+}
+.auth-logo-title {
+  color: var(--color-white);
+  font-size: 32px;
+  font-weight: 500;
+}
+@media only screen and (max-width: 768px) {
+  .auth-logo {
+    margin-bottom: 20px;
+  }
+  .auth-logo-title {
+    color: var(--color-black);
+    font-size: 32px;
+    font-weight: 600;
+  }
+}

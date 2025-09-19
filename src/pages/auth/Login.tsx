@@ -14,6 +14,7 @@ import { ref, get, update } from "firebase/database";
 import { db } from "../../firebase/config";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../redux/slices/userSlice";
+import { Logo } from "./components/logo";
 
 export function Login() {
   const navigate = useNavigate();
@@ -73,6 +74,9 @@ export function Login() {
     <div className="auth-wrapper">
       <LeftBox />
       <div className="auth-right-wrapper">
+        <div className="auth-logo-box">
+          <Logo />
+        </div>
         <div className="form-box">
           <h1 className="form-title">
             Welcome back to the CodeSquid Community

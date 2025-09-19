@@ -29,7 +29,7 @@ export function UserContact({
         {(massage || time) && (
           <div className="contact-massege-box">
             {massage && <p className="contact-massage">{massage}</p>}
-            {time && <p>{time}</p>}
+            {time && <p className="contact-time">{time}</p>}
           </div>
         )}
       </div>

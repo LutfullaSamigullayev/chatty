@@ -3,10 +3,13 @@
   height: 100vh;
   background-image: url("/messages_light_colour_background.jpg");
   background-size: cover;
+  display: flex;
+  flex-direction: column;
 }
 .main-wrapper {
   display: flex;
   justify-content: center;
   width: 100%;
   flex: 1 1 auto;
+  overflow: hidden;
 }

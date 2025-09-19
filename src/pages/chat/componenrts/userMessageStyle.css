@@ -1,31 +1,47 @@
 .user-message-box {
-    padding: 0 8px;
-    display: flex;
-    max-width: 50%;
-    width: fit-content;
-    float: right;
+  padding: 0 8px;
+  display: flex;
+  max-width: 60%;
+  width: fit-content;
+  float: right;
 }
 .right-message {
-    align-self: flex-end;
+  align-self: flex-end;
 }
 .user-message {
-    padding: 8px 8px;
-    overflow: hidden;
+  padding: 8px 8px;
+  overflow: hidden;
 }
 .blue {
-    background-color: var(--color-blue-100);
-    border-radius: 20px 20px 0 20px;
-    float: inline-end;
+  background-color: var(--color-blue-100);
+  border-radius: 20px 20px 0 20px;
+  float: inline-end;
 }
 .gray {
-    border-radius: 20px 20px 20px 0;
-    background-color: var(--color-gray-200);
-    float: inline-start;
+  border-radius: 20px 20px 20px 0;
+  background-color: var(--color-gray-200);
+  float: inline-start;
 }
 .user-message-time {
-    user-select: none;
-    display: flex;
-    column-gap: 8px;
-    align-items: end;
-    padding: 4px 4px;
+  user-select: none;
+  display: flex;
+  column-gap: 8px;
+  align-items: end;
+  padding: 4px 4px;
 }
+@media only screen and (max-width: 1024px) {
+  .user-message-box {
+    max-width: 70%
+  }
+}
+@media only screen and (max-width: 768px) {
+  .user-message-box {
+    max-width: 80%
+  }
+}
+@media only screen and (max-width: 420px) {
+  .user-message-box {
+    max-width: 90%
+  }
+}
+
