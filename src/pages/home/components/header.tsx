@@ -11,6 +11,7 @@ interface HeaderProps {
 
 export function Header({ onMenuToggle }: HeaderProps) {
   const [search, setSearch] = useState("");
+  console.log(search);
 
   return (
     <header className="header-wrapper">

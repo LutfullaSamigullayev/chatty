@@ -1,4 +1,3 @@
-import { Icons } from "../../../icons";
 import { Logo } from "./logo";
 
 export function LeftBox() {
