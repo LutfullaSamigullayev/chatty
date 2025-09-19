@@ -1,12 +1,10 @@
 import { Icons } from "../../../icons";
+import { Logo } from "./logo";
 
 export function LeftBox() {
   return (
     <div className="auth-left-wrapper">
-      <div className="auth-logo">
-        <Icons.logo />
-        <h1 className="auth-logo-title">Chatty</h1>
-      </div>
+      <Logo />
       <img className="auth-left-img" src="/center.png" alt="chatImage" />
       <div className="auth-left-content">
         <h2>Online Community For Back-end Developers</h2>

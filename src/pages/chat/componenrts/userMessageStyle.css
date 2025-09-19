@@ -1,7 +1,7 @@
 .user-message-box {
   padding: 0 8px;
   display: flex;
-  max-width: 50%;
+  max-width: 60%;
   width: fit-content;
   float: right;
 }
@@ -29,3 +29,19 @@
   align-items: end;
   padding: 4px 4px;
 }
+@media only screen and (max-width: 1024px) {
+  .user-message-box {
+    max-width: 70%
+  }
+}
+@media only screen and (max-width: 768px) {
+  .user-message-box {
+    max-width: 80%
+  }
+}
+@media only screen and (max-width: 420px) {
+  .user-message-box {
+    max-width: 90%
+  }
+}
+
